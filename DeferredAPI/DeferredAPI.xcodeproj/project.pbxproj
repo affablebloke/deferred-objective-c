@@ -1,0 +1,519 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E803EF0316CC1D4800441AB5 /* Promise.h in Headers */ = {isa = PBXBuildFile; fileRef = E803EF0116CC1D4800441AB5 /* Promise.h */; };
+		E803EF0416CC1D4800441AB5 /* Promise.m in Sources */ = {isa = PBXBuildFile; fileRef = E803EF0216CC1D4800441AB5 /* Promise.m */; };
+		E803EF0716CC604300441AB5 /* DeferredAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = E803EF0516CC604300441AB5 /* DeferredAPI.h */; };
+		E803EF0816CC604300441AB5 /* DeferredAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = E803EF0616CC604300441AB5 /* DeferredAPI.m */; };
+		E86653DA16CB17B9001A2059 /* Deferred.h in Headers */ = {isa = PBXBuildFile; fileRef = E86653D816CB17B9001A2059 /* Deferred.h */; };
+		E86653DB16CB17B9001A2059 /* Deferred.m in Sources */ = {isa = PBXBuildFile; fileRef = E86653D916CB17B9001A2059 /* Deferred.m */; };
+		E8A9074116CABC22007AE251 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8A9074016CABC22007AE251 /* Foundation.framework */; };
+		E8A9074716CABC22007AE251 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E8A9074516CABC22007AE251 /* InfoPlist.strings */; };
+		E8A9075016CABC22007AE251 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8A9074F16CABC22007AE251 /* SenTestingKit.framework */; };
+		E8A9075216CABC22007AE251 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8A9075116CABC22007AE251 /* UIKit.framework */; };
+		E8A9075316CABC22007AE251 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8A9074016CABC22007AE251 /* Foundation.framework */; };
+		E8A9075816CABC22007AE251 /* DeferredAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8A9073D16CABC22007AE251 /* DeferredAPI.framework */; };
+		E8A9075E16CABC22007AE251 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E8A9075C16CABC22007AE251 /* InfoPlist.strings */; };
+		E8A9076116CABC22007AE251 /* DeferredAPITests.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A9076016CABC22007AE251 /* DeferredAPITests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E8A9075416CABC22007AE251 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E8A9073116CABC22007AE251 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E8A9073C16CABC22007AE251;
+			remoteInfo = DeferredAPI;
+		};
+		E8A9075616CABC22007AE251 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E8A9073116CABC22007AE251 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E8A9073C16CABC22007AE251;
+			remoteInfo = DeferredAPI;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		E803EF0116CC1D4800441AB5 /* Promise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Promise.h; sourceTree = "<group>"; };
+		E803EF0216CC1D4800441AB5 /* Promise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Promise.m; sourceTree = "<group>"; };
+		E803EF0516CC604300441AB5 /* DeferredAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeferredAPI.h; sourceTree = "<group>"; };
+		E803EF0616CC604300441AB5 /* DeferredAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeferredAPI.m; sourceTree = "<group>"; };
+		E86653D816CB17B9001A2059 /* Deferred.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Deferred.h; sourceTree = "<group>"; };
+		E86653D916CB17B9001A2059 /* Deferred.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Deferred.m; sourceTree = "<group>"; };
+		E8A9073D16CABC22007AE251 /* DeferredAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework.static; includeInIndex = 0; path = DeferredAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E8A9074016CABC22007AE251 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		E8A9074416CABC22007AE251 /* DeferredAPI-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DeferredAPI-Info.plist"; sourceTree = "<group>"; };
+		E8A9074616CABC22007AE251 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		E8A9074816CABC22007AE251 /* DeferredAPI-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DeferredAPI-Prefix.pch"; sourceTree = "<group>"; };
+		E8A9074E16CABC22007AE251 /* DeferredAPITests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DeferredAPITests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E8A9074F16CABC22007AE251 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		E8A9075116CABC22007AE251 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		E8A9075B16CABC22007AE251 /* DeferredAPITests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DeferredAPITests-Info.plist"; sourceTree = "<group>"; };
+		E8A9075D16CABC22007AE251 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		E8A9075F16CABC22007AE251 /* DeferredAPITests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeferredAPITests.h; sourceTree = "<group>"; };
+		E8A9076016CABC22007AE251 /* DeferredAPITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeferredAPITests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E8A9073716CABC22007AE251 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E8A9074116CABC22007AE251 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E8A9074A16CABC22007AE251 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E8A9075016CABC22007AE251 /* SenTestingKit.framework in Frameworks */,
+				E8A9075216CABC22007AE251 /* UIKit.framework in Frameworks */,
+				E8A9075316CABC22007AE251 /* Foundation.framework in Frameworks */,
+				E8A9075816CABC22007AE251 /* DeferredAPI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E8A9073016CABC22007AE251 = {
+			isa = PBXGroup;
+			children = (
+				E8A9074216CABC22007AE251 /* DeferredAPI */,
+				E8A9075916CABC22007AE251 /* DeferredAPITests */,
+				E8A9073F16CABC22007AE251 /* Frameworks */,
+				E8A9073E16CABC22007AE251 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E8A9073E16CABC22007AE251 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E8A9073D16CABC22007AE251 /* DeferredAPI.framework */,
+				E8A9074E16CABC22007AE251 /* DeferredAPITests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E8A9073F16CABC22007AE251 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E8A9074016CABC22007AE251 /* Foundation.framework */,
+				E8A9074F16CABC22007AE251 /* SenTestingKit.framework */,
+				E8A9075116CABC22007AE251 /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E8A9074216CABC22007AE251 /* DeferredAPI */ = {
+			isa = PBXGroup;
+			children = (
+				E8A9074316CABC22007AE251 /* Supporting Files */,
+				E86653D816CB17B9001A2059 /* Deferred.h */,
+				E86653D916CB17B9001A2059 /* Deferred.m */,
+				E803EF0116CC1D4800441AB5 /* Promise.h */,
+				E803EF0216CC1D4800441AB5 /* Promise.m */,
+				E803EF0516CC604300441AB5 /* DeferredAPI.h */,
+				E803EF0616CC604300441AB5 /* DeferredAPI.m */,
+			);
+			path = DeferredAPI;
+			sourceTree = "<group>";
+		};
+		E8A9074316CABC22007AE251 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E8A9074416CABC22007AE251 /* DeferredAPI-Info.plist */,
+				E8A9074516CABC22007AE251 /* InfoPlist.strings */,
+				E8A9074816CABC22007AE251 /* DeferredAPI-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E8A9075916CABC22007AE251 /* DeferredAPITests */ = {
+			isa = PBXGroup;
+			children = (
+				E8A9075F16CABC22007AE251 /* DeferredAPITests.h */,
+				E8A9076016CABC22007AE251 /* DeferredAPITests.m */,
+				E8A9075A16CABC22007AE251 /* Supporting Files */,
+			);
+			path = DeferredAPITests;
+			sourceTree = "<group>";
+		};
+		E8A9075A16CABC22007AE251 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E8A9075B16CABC22007AE251 /* DeferredAPITests-Info.plist */,
+				E8A9075C16CABC22007AE251 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		E8A9073816CABC22007AE251 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E86653DA16CB17B9001A2059 /* Deferred.h in Headers */,
+				E803EF0316CC1D4800441AB5 /* Promise.h in Headers */,
+				E803EF0716CC604300441AB5 /* DeferredAPI.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		E8A9073C16CABC22007AE251 /* DeferredAPI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E8A9076416CABC22007AE251 /* Build configuration list for PBXNativeTarget "DeferredAPI" */;
+			buildPhases = (
+				E8A9073516CABC22007AE251 /* ShellScript */,
+				E8A9073616CABC22007AE251 /* Sources */,
+				E8A9073716CABC22007AE251 /* Frameworks */,
+				E8A9073816CABC22007AE251 /* Headers */,
+				E8A9073916CABC22007AE251 /* Resources */,
+				E8A9073A16CABC22007AE251 /* ShellScript */,
+				E8A9073B16CABC22007AE251 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DeferredAPI;
+			productName = DeferredAPI;
+			productReference = E8A9073D16CABC22007AE251 /* DeferredAPI.framework */;
+			productType = "com.apple.product-type.framework.static";
+		};
+		E8A9074D16CABC22007AE251 /* DeferredAPITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E8A9076716CABC22007AE251 /* Build configuration list for PBXNativeTarget "DeferredAPITests" */;
+			buildPhases = (
+				E8A9074916CABC22007AE251 /* Sources */,
+				E8A9074A16CABC22007AE251 /* Frameworks */,
+				E8A9074B16CABC22007AE251 /* Resources */,
+				E8A9074C16CABC22007AE251 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E8A9075516CABC22007AE251 /* PBXTargetDependency */,
+				E8A9075716CABC22007AE251 /* PBXTargetDependency */,
+			);
+			name = DeferredAPITests;
+			productName = DeferredAPITests;
+			productReference = E8A9074E16CABC22007AE251 /* DeferredAPITests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E8A9073116CABC22007AE251 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = "";
+			};
+			buildConfigurationList = E8A9073416CABC22007AE251 /* Build configuration list for PBXProject "DeferredAPI" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = E8A9073016CABC22007AE251;
+			productRefGroup = E8A9073E16CABC22007AE251 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E8A9073C16CABC22007AE251 /* DeferredAPI */,
+				E8A9074D16CABC22007AE251 /* DeferredAPITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E8A9073916CABC22007AE251 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E8A9074716CABC22007AE251 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E8A9074B16CABC22007AE251 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E8A9075E16CABC22007AE251 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		E8A9073516CABC22007AE251 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e\n\nset +u\nif [[ $UFW_MASTER_SCRIPT_RUNNING ]]\nthen\n    # Nothing for the slave script to do\n    exit 0\nfi\nset -u\n\nif [[ \"$SDK_NAME\" =~ ([A-Za-z]+) ]]\nthen\n    UFW_SDK_PLATFORM=${BASH_REMATCH[1]}\nelse\n    echo \"Could not find platform name from SDK_NAME: $SDK_NAME\"\n    exit 1\nfi\n\nif [[ \"$SDK_NAME\" =~ ([0-9]+.*$) ]]\nthen\n\tUFW_SDK_VERSION=${BASH_REMATCH[1]}\nelse\n    echo \"Could not find sdk version  from SDK_NAME: $SDK_NAME\"\n    exit 1\nfi\n\nif [[ \"$UFW_SDK_PLATFORM\" = \"iphoneos\" ]]\nthen\n    UFW_OTHER_PLATFORM=iphonesimulator\nelse\n    UFW_OTHER_PLATFORM=iphoneos\nfi\n\nif [[ \"$BUILT_PRODUCTS_DIR\" =~ (.*)$UFW_SDK_PLATFORM$ ]]\nthen\n    UFW_OTHER_BUILT_PRODUCTS_DIR=\"${BASH_REMATCH[1]}${UFW_OTHER_PLATFORM}\"\nelse\n    echo \"Could not find $UFW_SDK_PLATFORM in $BUILT_PRODUCTS_DIR\"\n    exit 1\nfi\n\nONLY_ACTIVE_PLATFORM=${ONLY_ACTIVE_PLATFORM:-$ONLY_ACTIVE_ARCH}\n\n# Short-circuit if all binaries are up to date\n\nif [[ -f \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" ]] && \\\n   [[ -f \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/${EXECUTABLE_PATH}\" ]] && \\\n   [[ ! \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" -nt \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/${EXECUTABLE_PATH}\" ]] && \\\n  ([[ \"${ONLY_ACTIVE_PLATFORM}\" == \"YES\" ]] || \\\n    ([[ -f \"${UFW_OTHER_BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" ]] && \\\n     [[ -f \"${UFW_OTHER_BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/${EXECUTABLE_PATH}\" ]] && \\\n     [[ ! \"${UFW_OTHER_BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" -nt \"${UFW_OTHER_BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/${EXECUTABLE_PATH}\" ]]\n    )\n  )\nthen\n    exit 0\nfi\n\n\n# Clean other platform if needed\n\nif [[ ! -f \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" ]] && [[ \"${ONLY_ACTIVE_PLATFORM}\" != \"YES\" ]]\nthen\n\techo \"Platform \\\"$UFW_SDK_PLATFORM\\\" was cleaned recently. Cleaning \\\"$UFW_OTHER_PLATFORM\\\" as well\"\n\techo xcodebuild -project \"${PROJECT_FILE_PATH}\" -target \"${TARGET_NAME}\" -configuration \"${CONFIGURATION}\" -sdk ${UFW_OTHER_PLATFORM}${UFW_SDK_VERSION} BUILD_DIR=\"${BUILD_DIR}\" CONFIGURATION_TEMP_DIR=\"${PROJECT_TEMP_DIR}/${CONFIGURATION}-${UFW_OTHER_PLATFORM}\" clean\n\txcodebuild -project \"${PROJECT_FILE_PATH}\" -target \"${TARGET_NAME}\" -configuration \"${CONFIGURATION}\" -sdk ${UFW_OTHER_PLATFORM}${UFW_SDK_VERSION} BUILD_DIR=\"${BUILD_DIR}\" CONFIGURATION_TEMP_DIR=\"${PROJECT_TEMP_DIR}/${CONFIGURATION}-${UFW_OTHER_PLATFORM}\" clean\nfi\n\n\n# Make sure we are building from fresh binaries\n\nrm -rf \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\"\nrm -rf \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework\"\n\nif [[ \"${ONLY_ACTIVE_PLATFORM}\" != \"YES\" ]]\nthen\n    rm -rf \"${UFW_OTHER_BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\"\n    rm -rf \"${UFW_OTHER_BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework\"\nfi\n";
+		};
+		E8A9073A16CABC22007AE251 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "HEADERS_ROOT=$SRCROOT/$PRODUCT_NAME\nFRAMEWORK_HEADERS_DIR=\"$BUILT_PRODUCTS_DIR/$WRAPPER_NAME/Versions/$FRAMEWORK_VERSION/Headers\"\n\n## only header files expected at this point\nPUBLIC_HEADERS=$(find $FRAMEWORK_HEADERS_DIR/. -not -type d 2> /dev/null | sed -e \"s@.*/@@g\")\n\nFIND_OPTS=\"\"\nfor PUBLIC_HEADER in $PUBLIC_HEADERS; do\n  if [ -n \"$FIND_OPTS\" ]; then\n    FIND_OPTS=\"$FIND_OPTS -o\"\n  fi\n  FIND_OPTS=\"$FIND_OPTS -name '$PUBLIC_HEADER'\"\ndone\n\nif [ -n \"$FIND_OPTS\" ]; then\n  for ORIG_HEADER in $(eval \"find $HEADERS_ROOT/. $FIND_OPTS\" 2> /dev/null | sed -e \"s@^$HEADERS_ROOT/./@@g\"); do\n    PUBLIC_HEADER=$(basename $ORIG_HEADER)\n    RELATIVE_PATH=$(dirname $ORIG_HEADER)\n    if [ -e $FRAMEWORK_HEADERS_DIR/$PUBLIC_HEADER ]; then\n      mkdir -p \"$FRAMEWORK_HEADERS_DIR/$RELATIVE_PATH\"\n      mv \"$FRAMEWORK_HEADERS_DIR/$PUBLIC_HEADER\" \"$FRAMEWORK_HEADERS_DIR/$RELATIVE_PATH/$PUBLIC_HEADER\"\n    fi\n  done\nfi\n";
+		};
+		E8A9073B16CABC22007AE251 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e\n\nset +u\nif [[ $UFW_MASTER_SCRIPT_RUNNING ]]\nthen\n    # Nothing for the slave script to do\n    exit 0\nfi\nset -u\nexport UFW_MASTER_SCRIPT_RUNNING=1\n\n\n# Functions\n\n## List files in the specified directory, storing to the specified array.\n#\n# @param $1 The path to list\n# @param $2 The name of the array to fill\n#\n##\nlist_files ()\n{\n    filelist=$(ls \"$1\")\n    while read line\n    do\n        eval \"$2[\\${#$2[*]}]=\\\"\\$line\\\"\"\n    done <<< \"$filelist\"\n}\n\n\n# Sanity check\n\nif [[ ! -f \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" ]]\nthen\n    echo \"Framework target \\\"${TARGET_NAME}\\\" had no source files to build from. Make sure your source files have the correct target membership\"\n    exit 1\nfi\n\n\n# Gather information\n\nif [[ \"$SDK_NAME\" =~ ([A-Za-z]+) ]]\nthen\n    UFW_SDK_PLATFORM=${BASH_REMATCH[1]}\nelse\n    echo \"Could not find platform name from SDK_NAME: $SDK_NAME\"\n    exit 1\nfi\n\nif [[ \"$SDK_NAME\" =~ ([0-9]+.*$) ]]\nthen\n    UFW_SDK_VERSION=${BASH_REMATCH[1]}\nelse\n    echo \"Could not find sdk version from SDK_NAME: $SDK_NAME\"\n    exit 1\nfi\n\nif [[ \"$UFW_SDK_PLATFORM\" = \"iphoneos\" ]]\nthen\n    UFW_OTHER_PLATFORM=iphonesimulator\nelse\n    UFW_OTHER_PLATFORM=iphoneos\nfi\n\nif [[ \"$BUILT_PRODUCTS_DIR\" =~ (.*)$UFW_SDK_PLATFORM$ ]]\nthen\n    UFW_OTHER_BUILT_PRODUCTS_DIR=\"${BASH_REMATCH[1]}${UFW_OTHER_PLATFORM}\"\nelse\n    echo \"Could not find $UFW_SDK_PLATFORM in $BUILT_PRODUCTS_DIR\"\n    exit 1\nfi\n\nONLY_ACTIVE_PLATFORM=${ONLY_ACTIVE_PLATFORM:-$ONLY_ACTIVE_ARCH}\n\n# Short-circuit if all binaries are up to date.\n# We already checked the other platform in the prerun script.\n\nif [[ -f \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" ]] && [[ -f \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/${EXECUTABLE_PATH}\" ]] && [[ ! \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" -nt \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/${EXECUTABLE_PATH}\" ]]\nthen\n    exit 0\nfi\n\nif [ \"${ONLY_ACTIVE_PLATFORM}\" == \"YES\" ]\nthen\n    echo \"ONLY_ACTIVE_PLATFORM=${ONLY_ACTIVE_PLATFORM}: Skipping other platform build\"\nelse\n    # Make sure the other platform gets built\n    \n    echo \"Build other platform\"\n    \n    echo xcodebuild -project \"${PROJECT_FILE_PATH}\" -target \"${TARGET_NAME}\" -configuration \"${CONFIGURATION}\" -sdk ${UFW_OTHER_PLATFORM}${UFW_SDK_VERSION} BUILD_DIR=\"${BUILD_DIR}\" CONFIGURATION_TEMP_DIR=\"${PROJECT_TEMP_DIR}/${CONFIGURATION}-${UFW_OTHER_PLATFORM}\" $ACTION\n    xcodebuild -project \"${PROJECT_FILE_PATH}\" -target \"${TARGET_NAME}\" -configuration \"${CONFIGURATION}\" -sdk ${UFW_OTHER_PLATFORM}${UFW_SDK_VERSION} BUILD_DIR=\"${BUILD_DIR}\" CONFIGURATION_TEMP_DIR=\"${PROJECT_TEMP_DIR}/${CONFIGURATION}-${UFW_OTHER_PLATFORM}\" $ACTION\n    \n    \n    # Build the fat static library binary\n    \n    echo \"Create universal static library\"\n    \n    echo \"$PLATFORM_DEVELOPER_BIN_DIR/libtool\" -static \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" \"${UFW_OTHER_BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" -o \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}.temp\"\n    \"$PLATFORM_DEVELOPER_BIN_DIR/libtool\" -static \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" \"${UFW_OTHER_BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" -o \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}.temp\"\n    \n    echo mv \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}.temp\" \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\"\n    mv \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}.temp\" \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\"\nfi\n\n# Build embedded framework structure\n\necho \"Build Embedded Framework\"\n\necho rm -rf \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework\"\nrm -rf \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework\"\necho mkdir -p \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/Resources\"\nmkdir -p \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/Resources\"\necho cp -a \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/\"\ncp -a \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/\"\n\ndeclare -a UFW_FILE_LIST\nlist_files \"${BUILT_PRODUCTS_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}\" UFW_FILE_LIST\nfor filename in \"${UFW_FILE_LIST[@]}\"\ndo\n    if [[ \"${filename}\" != \"Info.plist\" ]] && [[ ! \"${filename}\" =~ .*\\.lproj$ ]]\n    then\n        echo ln -sfh \"../${WRAPPER_NAME}/Resources/${filename}\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/Resources/${filename}\"\n        ln -sfh \"../${WRAPPER_NAME}/Resources/${filename}\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/Resources/${filename}\"\n    fi\ndone\n\n\nif [ \"${ONLY_ACTIVE_PLATFORM}\" != \"YES\" ]\nthen\n    # Replace other platform's framework with a copy of this one (so that both have the same universal binary)\n    \n    echo \"Copy from $UFW_SDK_PLATFORM to $UFW_OTHER_PLATFORM\"\n    \n    echo rm -rf \"${BUILD_DIR}/${CONFIGURATION}-${UFW_OTHER_PLATFORM}\"\n    rm -rf \"${BUILD_DIR}/${CONFIGURATION}-${UFW_OTHER_PLATFORM}\"\n    echo cp -a \"${BUILD_DIR}/${CONFIGURATION}-${UFW_SDK_PLATFORM}\" \"${BUILD_DIR}/${CONFIGURATION}-${UFW_OTHER_PLATFORM}\"\n    cp -a \"${BUILD_DIR}/${CONFIGURATION}-${UFW_SDK_PLATFORM}\" \"${BUILD_DIR}/${CONFIGURATION}-${UFW_OTHER_PLATFORM}\"\nfi\n";
+		};
+		E8A9074C16CABC22007AE251 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E8A9073616CABC22007AE251 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E86653DB16CB17B9001A2059 /* Deferred.m in Sources */,
+				E803EF0416CC1D4800441AB5 /* Promise.m in Sources */,
+				E803EF0816CC604300441AB5 /* DeferredAPI.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E8A9074916CABC22007AE251 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E8A9076116CABC22007AE251 /* DeferredAPITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E8A9075516CABC22007AE251 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E8A9073C16CABC22007AE251 /* DeferredAPI */;
+			targetProxy = E8A9075416CABC22007AE251 /* PBXContainerItemProxy */;
+		};
+		E8A9075716CABC22007AE251 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E8A9073C16CABC22007AE251 /* DeferredAPI */;
+			targetProxy = E8A9075616CABC22007AE251 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		E8A9074516CABC22007AE251 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E8A9074616CABC22007AE251 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		E8A9075C16CABC22007AE251 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E8A9075D16CABC22007AE251 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E8A9076216CABC22007AE251 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		E8A9076316CABC22007AE251 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E8A9076516CABC22007AE251 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DeferredAPI/DeferredAPI-Prefix.pch";
+				INFOPLIST_FILE = "DeferredAPI/DeferredAPI-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Debug;
+		};
+		E8A9076616CABC22007AE251 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DeferredAPI/DeferredAPI-Prefix.pch";
+				INFOPLIST_FILE = "DeferredAPI/DeferredAPI-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Release;
+		};
+		E8A9076816CABC22007AE251 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DeferredAPI/DeferredAPI-Prefix.pch";
+				INFOPLIST_FILE = "DeferredAPITests/DeferredAPITests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		E8A9076916CABC22007AE251 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DeferredAPI/DeferredAPI-Prefix.pch";
+				INFOPLIST_FILE = "DeferredAPITests/DeferredAPITests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E8A9073416CABC22007AE251 /* Build configuration list for PBXProject "DeferredAPI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E8A9076216CABC22007AE251 /* Debug */,
+				E8A9076316CABC22007AE251 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E8A9076416CABC22007AE251 /* Build configuration list for PBXNativeTarget "DeferredAPI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E8A9076516CABC22007AE251 /* Debug */,
+				E8A9076616CABC22007AE251 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E8A9076716CABC22007AE251 /* Build configuration list for PBXNativeTarget "DeferredAPITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E8A9076816CABC22007AE251 /* Debug */,
+				E8A9076916CABC22007AE251 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E8A9073116CABC22007AE251 /* Project object */;
+}
