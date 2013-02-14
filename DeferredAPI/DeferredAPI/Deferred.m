@@ -55,6 +55,9 @@
         for (ResolveWithDataBlock_t func in resolveTaskQueue) {
             func(nil);
         }
+        for (AlwaysBlock_t func in alwaysTaskQueue) {
+            func(nil);
+        }
     });
 }
 
@@ -63,6 +66,9 @@
     dispatch_async(queue, ^{
         for (ResolveWithDataBlock_t func in resolveTaskQueue) {
             func(data);
+        }
+        for (AlwaysBlock_t func in alwaysTaskQueue) {
+            func(nil);
         }
     });
 }
@@ -73,6 +79,9 @@
         for (FailWithDataBlock_t func in rejectTaskQueue) {
             func(nil);
         }
+        for (AlwaysBlock_t func in alwaysTaskQueue) {
+            func(nil);
+        }
     });
 }
 
@@ -81,6 +90,9 @@
     dispatch_async(queue, ^{
         for (FailWithDataBlock_t func in rejectTaskQueue) {
             func(data);
+        }
+        for (AlwaysBlock_t func in alwaysTaskQueue) {
+            func(nil);
         }
     });
 }
