@@ -53,7 +53,7 @@
     state = kResolved;
     dispatch_async(queue, ^{
         for (ResolveWithDataBlock_t func in resolveTaskQueue) {
-            func(Nil);
+            func(nil);
         }
     });
 }
@@ -71,7 +71,7 @@
     state = kRejected;
     dispatch_async(queue, ^{
         for (FailWithDataBlock_t func in rejectTaskQueue) {
-            func(Nil);
+            func(nil);
         }
     });
 }
