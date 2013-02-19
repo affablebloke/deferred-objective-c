@@ -14,10 +14,14 @@
     
 }
 
+@property (strong) NSMutableArray *callbacks;
+
+
 -(id)initWithDeferred:(Deferred *)theDeferred;
 -(void)always:(AlwaysBlock_t)always;
 -(void)doneWithData:(ResolveWithDataBlock_t)done;
 -(void)failWithData:(FailWithDataBlock_t)done;
+-(DeferredState)state;
 -(void)detach;
 
 @end

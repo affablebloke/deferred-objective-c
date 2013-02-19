@@ -34,18 +34,26 @@
 
 -(void)always:(AlwaysBlock_t)theBlock{
     [deferred always:theBlock];
+    [self.callbacks addObject:theBlock];
 }
 
 -(void)doneWithData:(ResolveWithDataBlock_t)theBlock{
     [deferred doneWithData:theBlock];
+    [self.callbacks addObject:theBlock];
 }
 
 -(void)failWithData:(FailWithDataBlock_t)theBlock{
     [deferred failWithData:theBlock];
+    [self.callbacks addObject:theBlock];
+}
+
+-(DeferredState)state{
+    return [deferred state];
 }
 
 -(void)detach{
-    //TODO finish this implementation
+    [deferred detachPromise:self];
+    [self.callbacks removeAllObjects];
 }
 
 

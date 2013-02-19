@@ -12,6 +12,7 @@
 #import "Deferred.h"
 #import "Promise.h"
 
+
 @implementation Deferred{
     NSMutableArray *resolveTaskQueue;
     NSMutableArray *rejectTaskQueue;
@@ -56,7 +57,7 @@
             func(nil);
         }
         for (AlwaysBlock_t func in alwaysTaskQueue) {
-            func(nil);
+            func();
         }
     });
 }
@@ -68,7 +69,7 @@
             func(data);
         }
         for (AlwaysBlock_t func in alwaysTaskQueue) {
-            func(nil);
+            func();
         }
     });
 }
@@ -80,7 +81,7 @@
             func(nil);
         }
         for (AlwaysBlock_t func in alwaysTaskQueue) {
-            func(nil);
+            func();
         }
     });
 }
@@ -92,7 +93,7 @@
             func(data);
         }
         for (AlwaysBlock_t func in alwaysTaskQueue) {
-            func(nil);
+            func();
         }
     });
 }
@@ -105,9 +106,17 @@
     [resolveTaskQueue addObject:theBlock];
 }
 
-
 -(void)failWithData:(FailWithDataBlock_t)theBlock{
     [rejectTaskQueue addObject:theBlock];
 }
+
+-(void)detachPromise:(Promise *)promise{
+    for (id callback in [promise callbacks]) {
+        [resolveTaskQueue removeObject:callback];
+        [rejectTaskQueue removeObject:callback];
+        [alwaysTaskQueue removeObject:callback];
+    }
+}
+
 
 @end

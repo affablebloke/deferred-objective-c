@@ -8,6 +8,7 @@
 #import "DeferredAPITests.h"
 #import "DeferredAPI.h"
 #import "Deferred.h"
+#import "DummyDeferred.h"
 
 @implementation DeferredAPITests{
     NSConditionLock *asyncLock;
@@ -50,7 +51,7 @@
     Deferred *dfd = [DeferredAPI deferred];
     [dfd resolve];
     STAssertTrue([dfd state] == kResolved, @"Deferred is not in kRejected state!");
-
+    
     dfd = [DeferredAPI deferred];
     [dfd resolveWith:@"Just a dumb string"];
     STAssertTrue([dfd state] == kResolved, @"Deferred is not in kRejected state!");
@@ -60,7 +61,7 @@
 - (void)testResolveInOrder
 {
     Deferred *dfd = [DeferredAPI deferred];
-   
+    
     // create the semaphore and lock it once before we start
     // the async operation
     NSConditionLock *tl = [NSConditionLock new];
@@ -84,7 +85,7 @@
     [dfd resolve];
     [asyncLock lockWhenCondition:1];
 }
-    
+
 - (void)testRejectInOrder
 {
     Deferred *dfd = [DeferredAPI deferred];
@@ -111,6 +112,81 @@
     
     [dfd reject];
     [asyncLock lockWhenCondition:1];
+}
+
+
+- (void)testDeferredAPIDoneCallback
+{
+    // create the semaphore and lock it once before we start
+    // the async operation
+    NSConditionLock *tl = [NSConditionLock new];
+    asyncLock = tl;
+    
+    Promise *promise = [DeferredAPI when:[[DummyDeferred dummy] loadWithDone], [[DummyDeferred dummy] loadWithDone], [[DummyDeferred dummy] loadWithDone],
+                        [[DummyDeferred dummy] loadWithDone], [[DummyDeferred dummy] loadWithDone], [[DummyDeferred dummy] loadWithDone], [[DummyDeferred dummy] loadWithDone], nil];
+    [promise doneWithData:^(id data) {
+        
+        [asyncLock unlockWithCondition:1];
+    }];
+    
+    [promise failWithData:^(id data) {
+        STFail(@"Fail was triggered!!");
+        [asyncLock unlockWithCondition:1];
+    }];
+    
+    
+    
+    Promise *promise2 = [DeferredAPI whenArray:[NSArray arrayWithObjects:[[DummyDeferred dummy] loadWithDone], [[DummyDeferred dummy] loadWithDone], [[DummyDeferred dummy] loadWithDone], nil]];
+    
+    [promise2 doneWithData:^(id data) {
+        
+        [asyncLock unlockWithCondition:1];
+    }];
+    
+    [promise2 failWithData:^(id data) {
+        STFail(@"Fail was triggered!!");
+        [asyncLock unlockWithCondition:1];
+    }];
+    
+    
+    [asyncLock lockWhenCondition:1];
+    
+}
+
+
+- (void)testDeferredAPIFailCallback
+{
+    // create the semaphore and lock it once before we start
+    // the async operation
+    NSConditionLock *tl = [NSConditionLock new];
+    asyncLock = tl;
+    
+    Promise *promise = [DeferredAPI when:[[DummyDeferred dummy] loadWithDone], [[DummyDeferred dummy] loadWithDone], [[DummyDeferred dummy] loadWithDone],
+                        [[DummyDeferred dummy] loadWithDone], [[DummyDeferred dummy] loadWithDone], [[DummyDeferred dummy] loadWithDone], [[DummyDeferred dummy] loadWithFail], nil];
+    [promise doneWithData:^(id data) {
+        STFail(@"Done was triggered!!");
+        [asyncLock unlockWithCondition:1];
+    }];
+    
+    [promise failWithData:^(id data) {
+        [asyncLock unlockWithCondition:1];
+    }];
+    
+    
+    Promise *promise2 = [DeferredAPI whenArray:[NSArray arrayWithObjects:[[DummyDeferred dummy] loadWithDone], [[DummyDeferred dummy] loadWithDone], [[DummyDeferred dummy] loadWithFail], nil]];
+    
+    [promise2 doneWithData:^(id data) {
+        STFail(@"Done was triggered!!");
+        [asyncLock unlockWithCondition:1];
+    }];
+    
+    [promise2 failWithData:^(id data) {
+        [asyncLock unlockWithCondition:1];
+    }];
+    
+    
+    [asyncLock lockWhenCondition:1];
+    
 }
 
 

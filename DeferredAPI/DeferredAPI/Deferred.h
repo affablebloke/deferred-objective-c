@@ -8,17 +8,11 @@
 #import <Foundation/Foundation.h>
 #import "DeferredAPI.h"
 
-@class Promise;
+//@class Promise;
 
 @interface Deferred : NSObject{
 
 }
-
-typedef enum {
-    kPending,
-    kResolved,
-    kRejected
-} DeferredState;
 
 
 -(id)init;
@@ -33,5 +27,6 @@ typedef enum {
 -(void)failWithData:(FailWithDataBlock_t)done;
 -(DeferredState)state;
 -(Promise *)promise;
+-(void)detachPromise:(Promise *)promise;
 
 @end

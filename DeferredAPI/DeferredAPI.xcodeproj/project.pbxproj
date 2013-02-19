@@ -7,12 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E803EF0316CC1D4800441AB5 /* Promise.h in Headers */ = {isa = PBXBuildFile; fileRef = E803EF0116CC1D4800441AB5 /* Promise.h */; };
+		E803EF0316CC1D4800441AB5 /* Promise.h in Headers */ = {isa = PBXBuildFile; fileRef = E803EF0116CC1D4800441AB5 /* Promise.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E803EF0416CC1D4800441AB5 /* Promise.m in Sources */ = {isa = PBXBuildFile; fileRef = E803EF0216CC1D4800441AB5 /* Promise.m */; };
-		E803EF0716CC604300441AB5 /* DeferredAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = E803EF0516CC604300441AB5 /* DeferredAPI.h */; };
+		E803EF0716CC604300441AB5 /* DeferredAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = E803EF0516CC604300441AB5 /* DeferredAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E803EF0816CC604300441AB5 /* DeferredAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = E803EF0616CC604300441AB5 /* DeferredAPI.m */; };
-		E86653DA16CB17B9001A2059 /* Deferred.h in Headers */ = {isa = PBXBuildFile; fileRef = E86653D816CB17B9001A2059 /* Deferred.h */; };
+		E86653DA16CB17B9001A2059 /* Deferred.h in Headers */ = {isa = PBXBuildFile; fileRef = E86653D816CB17B9001A2059 /* Deferred.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E86653DB16CB17B9001A2059 /* Deferred.m in Sources */ = {isa = PBXBuildFile; fileRef = E86653D916CB17B9001A2059 /* Deferred.m */; };
+		E886A18816D3098F004201CD /* DummyDeferred.m in Sources */ = {isa = PBXBuildFile; fileRef = E886A18716D3098F004201CD /* DummyDeferred.m */; };
 		E8A9074116CABC22007AE251 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8A9074016CABC22007AE251 /* Foundation.framework */; };
 		E8A9074716CABC22007AE251 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E8A9074516CABC22007AE251 /* InfoPlist.strings */; };
 		E8A9075016CABC22007AE251 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8A9074F16CABC22007AE251 /* SenTestingKit.framework */; };
@@ -47,6 +48,8 @@
 		E803EF0616CC604300441AB5 /* DeferredAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeferredAPI.m; sourceTree = "<group>"; };
 		E86653D816CB17B9001A2059 /* Deferred.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Deferred.h; sourceTree = "<group>"; };
 		E86653D916CB17B9001A2059 /* Deferred.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Deferred.m; sourceTree = "<group>"; };
+		E886A18616D3098F004201CD /* DummyDeferred.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DummyDeferred.h; sourceTree = "<group>"; };
+		E886A18716D3098F004201CD /* DummyDeferred.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DummyDeferred.m; sourceTree = "<group>"; };
 		E8A9073D16CABC22007AE251 /* DeferredAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework.static; includeInIndex = 0; path = DeferredAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8A9074016CABC22007AE251 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E8A9074416CABC22007AE251 /* DeferredAPI-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DeferredAPI-Info.plist"; sourceTree = "<group>"; };
@@ -143,6 +146,8 @@
 				E8A9075F16CABC22007AE251 /* DeferredAPITests.h */,
 				E8A9076016CABC22007AE251 /* DeferredAPITests.m */,
 				E8A9075A16CABC22007AE251 /* Supporting Files */,
+				E886A18616D3098F004201CD /* DummyDeferred.h */,
+				E886A18716D3098F004201CD /* DummyDeferred.m */,
 			);
 			path = DeferredAPITests;
 			sourceTree = "<group>";
@@ -330,6 +335,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E8A9076116CABC22007AE251 /* DeferredAPITests.m in Sources */,
+				E886A18816D3098F004201CD /* DummyDeferred.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
