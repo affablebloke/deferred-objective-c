@@ -18,6 +18,7 @@
     NSMutableArray *rejectTaskQueue;
     NSMutableArray *alwaysTaskQueue;
     dispatch_queue_t queue;
+    dispatch_queue_t lockqueue;
     DeferredState state;
 }
 
@@ -25,11 +26,12 @@
 - (id)init {
     self = [super init];
     if (self) {
-        resolveTaskQueue = [NSMutableArray array];
-        rejectTaskQueue = [NSMutableArray array];
-        alwaysTaskQueue = [NSMutableArray array];
-        queue = dispatch_queue_create("DeferredQueue", NULL);
-        state = kPending;
+        self->resolveTaskQueue = [NSMutableArray array];
+        self->rejectTaskQueue = [NSMutableArray array];
+        self->alwaysTaskQueue = [NSMutableArray array];
+        self->queue = dispatch_queue_create("com.zombocom.deferred", NULL);
+        self->lockqueue = dispatch_queue_create("com.zombocom.deferredlock", NULL);
+        self->state = kPending;
     }
     return self;
 }
@@ -39,71 +41,87 @@
 }
 
 -(DeferredState)state{
-    return state;
+    __block DeferredState result;
+    dispatch_sync(lockqueue, ^{
+        result = self->state;
+    });
+    return result;
 }
 
 -(BOOL)isResolved{
-    return state == kResolved;
+    __block BOOL result;
+    dispatch_sync(self->lockqueue, ^{
+        result = self->state == kResolved;
+    });
+    return result;
 }
 
 -(BOOL)isRejected{
-    return state == kRejected;
+    __block BOOL result;
+    dispatch_sync(self->lockqueue, ^{
+        result = self->state == kRejected;
+    });
+    return result;
 }
 
 -(void)resolve{
-    state = kResolved;
-    dispatch_async(queue, ^{
-        for (ResolveWithDataBlock_t func in resolveTaskQueue) {
-            func(nil);
-        }
-        for (AlwaysBlock_t func in alwaysTaskQueue) {
-            func();
-        }
-    });
+    if ([self isResolved]) {
+        return;
+    }
+    self->state = kResolved;
+    for (ResolveWithDataBlock_t func in self->resolveTaskQueue) {
+        func(nil);
+    }
+    for (AlwaysBlock_t func in self->alwaysTaskQueue) {
+        func();
+    }
 }
 
 -(void)resolveWith:(id)data{
-    state = kResolved;
-    dispatch_async(queue, ^{
-        for (ResolveWithDataBlock_t func in resolveTaskQueue) {
-            func(data);
-        }
-        for (AlwaysBlock_t func in alwaysTaskQueue) {
-            func();
-        }
-    });
+    if ([self isResolved]) {
+        return;
+    }
+    self->state = kResolved;
+    for (ResolveWithDataBlock_t func in self->resolveTaskQueue) {
+        func(data);
+    }
+    for (AlwaysBlock_t func in self->alwaysTaskQueue) {
+        func();
+    }
 }
 
 -(void)reject{
-    state = kRejected;
-    dispatch_async(queue, ^{
-        for (FailWithDataBlock_t func in rejectTaskQueue) {
-            func(nil);
-        }
-        for (AlwaysBlock_t func in alwaysTaskQueue) {
-            func();
-        }
-    });
+    if ([self isRejected]) {
+        return;
+    }
+    self->state = kRejected;
+    for (FailWithDataBlock_t func in self->rejectTaskQueue) {
+        func(nil);
+    }
+    for (AlwaysBlock_t func in self->alwaysTaskQueue) {
+        func();
+    }
 }
 
 -(void)rejectWith:(id)data{
-    state = kRejected;
-    dispatch_async(queue, ^{
-        for (FailWithDataBlock_t func in rejectTaskQueue) {
-            func(data);
-        }
-        for (AlwaysBlock_t func in alwaysTaskQueue) {
-            func();
-        }
-    });
+    if ([self isRejected]) {
+        return;
+    }
+    self->state = kRejected;
+    for (FailWithDataBlock_t func in self->rejectTaskQueue) {
+        func(data);
+    }
+    for (AlwaysBlock_t func in self->alwaysTaskQueue) {
+        func();
+    }
 }
 
 -(void)always:(AlwaysBlock_t)theBlock{
-    [alwaysTaskQueue addObject:theBlock];
+    [self->alwaysTaskQueue addObject:theBlock];
 }
 
 -(void)doneWithData:(ResolveWithDataBlock_t)theBlock{
-    [resolveTaskQueue addObject:theBlock];
+    [self->resolveTaskQueue addObject:theBlock];
 }
 
 -(void)failWithData:(FailWithDataBlock_t)theBlock{
@@ -112,9 +130,9 @@
 
 -(void)detachPromise:(Promise *)promise{
     for (id callback in [promise callbacks]) {
-        [resolveTaskQueue removeObject:callback];
-        [rejectTaskQueue removeObject:callback];
-        [alwaysTaskQueue removeObject:callback];
+        [self->resolveTaskQueue removeObject:callback];
+        [self->rejectTaskQueue removeObject:callback];
+        [self->alwaysTaskQueue removeObject:callback];
     }
 }
 

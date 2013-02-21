@@ -14,5 +14,7 @@
 +(id)dummy;
 -(Promise *)loadWithDone;
 -(Promise *)loadWithFail;
+-(Promise *)loadImage;
+
 
 @end

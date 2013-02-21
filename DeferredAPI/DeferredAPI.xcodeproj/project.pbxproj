@@ -14,6 +14,7 @@
 		E86653DA16CB17B9001A2059 /* Deferred.h in Headers */ = {isa = PBXBuildFile; fileRef = E86653D816CB17B9001A2059 /* Deferred.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E86653DB16CB17B9001A2059 /* Deferred.m in Sources */ = {isa = PBXBuildFile; fileRef = E86653D916CB17B9001A2059 /* Deferred.m */; };
 		E886A18816D3098F004201CD /* DummyDeferred.m in Sources */ = {isa = PBXBuildFile; fileRef = E886A18716D3098F004201CD /* DummyDeferred.m */; };
+		E8A606A716D56DCC008A22CE /* AssetLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A606A616D56DCC008A22CE /* AssetLoader.m */; };
 		E8A9074116CABC22007AE251 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8A9074016CABC22007AE251 /* Foundation.framework */; };
 		E8A9074716CABC22007AE251 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E8A9074516CABC22007AE251 /* InfoPlist.strings */; };
 		E8A9075016CABC22007AE251 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8A9074F16CABC22007AE251 /* SenTestingKit.framework */; };
@@ -50,6 +51,8 @@
 		E86653D916CB17B9001A2059 /* Deferred.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Deferred.m; sourceTree = "<group>"; };
 		E886A18616D3098F004201CD /* DummyDeferred.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DummyDeferred.h; sourceTree = "<group>"; };
 		E886A18716D3098F004201CD /* DummyDeferred.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DummyDeferred.m; sourceTree = "<group>"; };
+		E8A606A516D56DCC008A22CE /* AssetLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetLoader.h; sourceTree = "<group>"; };
+		E8A606A616D56DCC008A22CE /* AssetLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetLoader.m; sourceTree = "<group>"; };
 		E8A9073D16CABC22007AE251 /* DeferredAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework.static; includeInIndex = 0; path = DeferredAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8A9074016CABC22007AE251 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E8A9074416CABC22007AE251 /* DeferredAPI-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DeferredAPI-Info.plist"; sourceTree = "<group>"; };
@@ -143,6 +146,8 @@
 		E8A9075916CABC22007AE251 /* DeferredAPITests */ = {
 			isa = PBXGroup;
 			children = (
+				E8A606A516D56DCC008A22CE /* AssetLoader.h */,
+				E8A606A616D56DCC008A22CE /* AssetLoader.m */,
 				E8A9075F16CABC22007AE251 /* DeferredAPITests.h */,
 				E8A9076016CABC22007AE251 /* DeferredAPITests.m */,
 				E8A9075A16CABC22007AE251 /* Supporting Files */,
@@ -336,6 +341,7 @@
 			files = (
 				E8A9076116CABC22007AE251 /* DeferredAPITests.m in Sources */,
 				E886A18816D3098F004201CD /* DummyDeferred.m in Sources */,
+				E8A606A716D56DCC008A22CE /* AssetLoader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

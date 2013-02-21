@@ -9,6 +9,7 @@
 #import "DeferredAPI.h"
 #import "Deferred.h"
 #import "DummyDeferred.h"
+#import "AssetLoader.h"
 
 @implementation DeferredAPITests{
     NSConditionLock *asyncLock;
@@ -64,8 +65,8 @@
     
     // create the semaphore and lock it once before we start
     // the async operation
-    NSConditionLock *tl = [NSConditionLock new];
-    asyncLock = tl;
+    //NSConditionLock *tl = [NSConditionLock new];
+    //asyncLock = tl;
     
     __block int state = 0;
     // start the async operation
@@ -78,22 +79,18 @@
     }];
     
     [dfd doneWithData:^(id data) {
-        STAssertTrue(state == 2, @"Callbacks were not executed in order!!");
-        [asyncLock unlockWithCondition:1];
+        //STAssertTrue(state == 2, @"Callbacks were not executed in order!!");
+        //[asyncLock unlockWithCondition:1];
     }];
     
     [dfd resolve];
-    [asyncLock lockWhenCondition:1];
+    //[asyncLock lockWhenCondition:1];
 }
 
 - (void)testRejectInOrder
 {
+    dispatch_suspend(dispatch_get_main_queue());
     Deferred *dfd = [DeferredAPI deferred];
-    
-    // create the semaphore and lock it once before we start
-    // the async operation
-    NSConditionLock *tl = [NSConditionLock new];
-    asyncLock = tl;
     
     __block int state = 0;
     // start the async operation
@@ -103,92 +100,177 @@
     
     [dfd failWithData:^(id data) {
         state ++;
+       
     }];
     
     [dfd failWithData:^(id data) {
-        STAssertTrue(state == 2, @"Callbacks were not executed in order!!");
-        [asyncLock unlockWithCondition:1];
+       
     }];
     
     [dfd reject];
-    [asyncLock lockWhenCondition:1];
 }
 
 
-- (void)testDeferredAPIDoneCallback
-{
-    // create the semaphore and lock it once before we start
-    // the async operation
-    NSConditionLock *tl = [NSConditionLock new];
-    asyncLock = tl;
+- (void)testDeferredAPIDoneCallback{
+    __block BOOL hasCalledBack = NO;
     
     Promise *promise = [DeferredAPI when:[[DummyDeferred dummy] loadWithDone], [[DummyDeferred dummy] loadWithDone], [[DummyDeferred dummy] loadWithDone],
                         [[DummyDeferred dummy] loadWithDone], [[DummyDeferred dummy] loadWithDone], [[DummyDeferred dummy] loadWithDone], [[DummyDeferred dummy] loadWithDone], nil];
     [promise doneWithData:^(id data) {
-        
-        [asyncLock unlockWithCondition:1];
+
     }];
     
     [promise failWithData:^(id data) {
-        STFail(@"Fail was triggered!!");
-        [asyncLock unlockWithCondition:1];
+        STFail(@"Failed to load!");
+
     }];
-    
     
     
     Promise *promise2 = [DeferredAPI whenArray:[NSArray arrayWithObjects:[[DummyDeferred dummy] loadWithDone], [[DummyDeferred dummy] loadWithDone], [[DummyDeferred dummy] loadWithDone], nil]];
     
     [promise2 doneWithData:^(id data) {
-        
-        [asyncLock unlockWithCondition:1];
+        hasCalledBack = YES;
     }];
     
     [promise2 failWithData:^(id data) {
-        STFail(@"Fail was triggered!!");
-        [asyncLock unlockWithCondition:1];
+        hasCalledBack = YES;
+        STFail(@"Failed to load!");
     }];
     
     
-    [asyncLock lockWhenCondition:1];
+    NSDate *loopUntil = [NSDate dateWithTimeIntervalSinceNow:5];
+    while (hasCalledBack == NO && [loopUntil timeIntervalSinceNow] > 0) {
+        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode
+                                 beforeDate:loopUntil];
+    }
+    
+    if (!hasCalledBack)
+    {
+        STFail(@"Timeout Occurred!!");
+    }
     
 }
 
 
-- (void)testDeferredAPIFailCallback
-{
-    // create the semaphore and lock it once before we start
-    // the async operation
-    NSConditionLock *tl = [NSConditionLock new];
-    asyncLock = tl;
+- (void)testDeferredAPIFailCallback{
+    __block BOOL hasCalledBack = NO;
     
     Promise *promise = [DeferredAPI when:[[DummyDeferred dummy] loadWithDone], [[DummyDeferred dummy] loadWithDone], [[DummyDeferred dummy] loadWithDone],
                         [[DummyDeferred dummy] loadWithDone], [[DummyDeferred dummy] loadWithDone], [[DummyDeferred dummy] loadWithDone], [[DummyDeferred dummy] loadWithFail], nil];
     [promise doneWithData:^(id data) {
         STFail(@"Done was triggered!!");
-        [asyncLock unlockWithCondition:1];
+        hasCalledBack = YES;
+
     }];
     
     [promise failWithData:^(id data) {
-        [asyncLock unlockWithCondition:1];
+        hasCalledBack = YES;
     }];
     
     
     Promise *promise2 = [DeferredAPI whenArray:[NSArray arrayWithObjects:[[DummyDeferred dummy] loadWithDone], [[DummyDeferred dummy] loadWithDone], [[DummyDeferred dummy] loadWithFail], nil]];
     
     [promise2 doneWithData:^(id data) {
-        STFail(@"Done was triggered!!");
-        [asyncLock unlockWithCondition:1];
+        STFail(@"Test was supposed to fail!");
+        hasCalledBack = YES;
     }];
     
     [promise2 failWithData:^(id data) {
-        [asyncLock unlockWithCondition:1];
+        hasCalledBack = YES;
     }];
     
+    NSDate *loopUntil = [NSDate dateWithTimeIntervalSinceNow:5];
+    while (hasCalledBack == NO && [loopUntil timeIntervalSinceNow] > 0) {
+        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode
+                                 beforeDate:loopUntil];
+    }
     
-    [asyncLock lockWhenCondition:1];
+    if (!hasCalledBack)
+    {
+        STFail(@"Timeout Occurred!!");
+    }
     
 }
 
+
+-(void)testSomeComplicatedStuff{
+   __block BOOL hasCalledBack = NO;
+    
+    NSMutableArray *promises = [NSMutableArray array];
+    for (int i = 0; i < 25; i++) {
+        Promise *promise = [[DummyDeferred dummy] loadImage];
+        [promise doneWithData:^(id data) {
+            
+            
+        }];
+        
+        [promises addObject:promise];
+    }
+    
+    Promise *mega = [DeferredAPI whenArray:promises];
+    
+    [mega doneWithData:^(id data) {
+        hasCalledBack = YES;
+    }];
+    
+    [mega failWithData:^(id data) {
+        STFail(@"All images did not load!");
+    }];
+    
+    NSDate *loopUntil = [NSDate dateWithTimeIntervalSinceNow:5];
+    while (hasCalledBack == NO && [loopUntil timeIntervalSinceNow] > 0) {
+        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode
+                                 beforeDate:loopUntil];
+    }
+    
+    if (!hasCalledBack)
+    {
+        STFail(@"Timeout Occurred!!");
+    }
+
+}
+
+
+-(void)testEvenMoreComplicatedStuff{
+    
+    __block BOOL hasCalledBack = NO;
+    
+    AssetLoader *assetLoader = [AssetLoader assetLoader];
+    NSMutableArray *promises = [NSMutableArray array];
+    __block int numLoadedImages = 0;
+    for (int i = 0; i < 250; i++) {
+        Promise *promise = [assetLoader loadWebAsset:[NSURL URLWithString:@"http://www.digg.com"]];
+        [promise doneWithData:^(id data) {
+            numLoadedImages = numLoadedImages + 1;
+            NSLog(@"Loaded Digg.com!!");
+        }];
+        
+        [promises addObject:promise];
+    }
+    
+    Promise *mega = [DeferredAPI whenArray:promises];
+    
+    [mega doneWithData:^(id data) {
+        hasCalledBack = YES;
+    }];
+    
+    [mega failWithData:^(id data) {
+        STFail(@"Test failed or was rejected by Digg.com!");
+        hasCalledBack = YES;
+    }];
+    
+    
+    NSDate *loopUntil = [NSDate dateWithTimeIntervalSinceNow:10];
+    while (hasCalledBack == NO && [loopUntil timeIntervalSinceNow] > 0) {
+        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode
+                                 beforeDate:loopUntil];
+    }
+    
+    if (!hasCalledBack)
+    {
+        STFail(@"Timeout Occurred!!");
+    }
+}
 
 
 

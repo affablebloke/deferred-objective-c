@@ -47,7 +47,7 @@
         va_end(argumentList);
     }
     
-    Deferred *dfd = [DeferredAPI deferred];
+    __block Deferred *dfd = [DeferredAPI deferred];
     
     FailWithDataBlock_t failBlock = ^(id data){
         [DeferredAPI checkCallbackStatus:dfd withPromises:promises];
@@ -63,8 +63,6 @@
     }
     
     [DeferredAPI checkCallbackStatus:dfd withPromises:promises];
-    
-    
     return [dfd promise];
 }
 
@@ -77,8 +75,7 @@
     }
     
     __block NSMutableArray *promisesCopy = [promises mutableCopy];
-    
-    Deferred *dfd = [DeferredAPI deferred];
+    __block Deferred *dfd = [DeferredAPI deferred];
     
     FailWithDataBlock_t failBlock = ^(id data){
         [DeferredAPI checkCallbackStatus:dfd withPromises:promisesCopy];
@@ -99,24 +96,28 @@
 }
 
 +(void)checkCallbackStatus:(Deferred *)dfd withPromises:(NSArray *)promises{
-    BOOL resolved = YES;
-    for (Promise *promise in promises) {
-        if([promise state] == kRejected){
-            [DeferredAPI breakCallbackChain:promises];
-            [dfd reject];
-            resolved = NO;
-            break;
+    //dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        if([dfd isResolved] || [dfd isRejected]){
+            return;
+        }
+        BOOL resolved = YES;
+        for (Promise *promise in promises) {
+            if([promise state] == kRejected){
+                [dfd reject];
+                resolved = NO;
+                break;
+            }
+            if([promise state] == kPending){
+                resolved = NO;
+                break;
+            }
         }
         
-        if([promise state] == kPending){
-            resolved = NO;
-            break;
+        if(resolved){
+            [dfd resolve];
         }
-    }
     
-    if(resolved){
-        [dfd resolve];
-    }
+    //});
 }
 
 
