@@ -20,7 +20,9 @@
 - (id)init {
     self = [super init];
     if (self) {
-        //TODO initialization
+        self->alwaysBlocks = [NSMutableArray array];
+        self->doneBlocks = [NSMutableArray array];
+        self->failBlocks = [NSMutableArray array];
     }
     return self;
 }
@@ -33,18 +35,15 @@
 }
 
 -(void)always:(AlwaysBlock_t)theBlock{
-    [deferred always:theBlock];
-    [self.callbacks addObject:theBlock];
+    [self->alwaysBlocks addObject:[theBlock copy]];
 }
 
 -(void)doneWithData:(ResolveWithDataBlock_t)theBlock{
-    [deferred doneWithData:theBlock];
-    [self.callbacks addObject:theBlock];
+    [self->doneBlocks addObject:[theBlock copy]];
 }
 
--(void)failWithData:(FailWithDataBlock_t)theBlock{
-    [deferred failWithData:theBlock];
-    [self.callbacks addObject:theBlock];
+-(void)failWithData:(RejectWithDataBlock_t)theBlock{
+    [self->failBlocks addObject:[theBlock copy]];
 }
 
 -(DeferredState)state{
@@ -53,7 +52,24 @@
 
 -(void)detach{
     [deferred detachPromise:self];
-    [self.callbacks removeAllObjects];
+}
+
+-(void)execDoneBlocks:(id)data{
+    for (ResolveWithDataBlock_t block in doneBlocks) {
+        block(data);
+    }
+}
+
+-(void)execFailBlocks:(id)data{
+    for (RejectWithDataBlock_t block in failBlocks) {
+        block(data);
+    }
+}
+
+-(void)execAlwaysBlocks{
+    for (AlwaysBlock_t block in alwaysBlocks) {
+        block();
+    }
 }
 
 

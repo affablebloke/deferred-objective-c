@@ -14,9 +14,7 @@
 
 
 @implementation Deferred{
-    NSMutableArray *resolveTaskQueue;
-    NSMutableArray *rejectTaskQueue;
-    NSMutableArray *alwaysTaskQueue;
+    NSMutableArray *promises;
     dispatch_queue_t queue;
     dispatch_queue_t lockqueue;
     DeferredState state;
@@ -26,9 +24,7 @@
 - (id)init {
     self = [super init];
     if (self) {
-        self->resolveTaskQueue = [NSMutableArray array];
-        self->rejectTaskQueue = [NSMutableArray array];
-        self->alwaysTaskQueue = [NSMutableArray array];
+        self->promises = [NSMutableArray array];
         self->queue = dispatch_queue_create("com.zombocom.deferred", NULL);
         self->lockqueue = dispatch_queue_create("com.zombocom.deferredlock", NULL);
         self->state = kPending;
@@ -37,7 +33,9 @@
 }
 
 -(Promise *)promise{
-    return [[Promise alloc] initWithDeferred: self];
+    Promise *promise = [[Promise alloc] initWithDeferred: self];
+    [promises addObject:promise];
+    return promise;
 }
 
 -(DeferredState)state{
@@ -69,11 +67,9 @@
         return;
     }
     self->state = kResolved;
-    for (ResolveWithDataBlock_t func in self->resolveTaskQueue) {
-        func(nil);
-    }
-    for (AlwaysBlock_t func in self->alwaysTaskQueue) {
-        func();
+    for (Promise *promise in promises) {
+        [promise execDoneBlocks:nil];
+        [promise execAlwaysBlocks];
     }
 }
 
@@ -82,11 +78,9 @@
         return;
     }
     self->state = kResolved;
-    for (ResolveWithDataBlock_t func in self->resolveTaskQueue) {
-        func(data);
-    }
-    for (AlwaysBlock_t func in self->alwaysTaskQueue) {
-        func();
+    for (Promise *promise in promises) {
+        [promise execDoneBlocks:data];
+        [promise execAlwaysBlocks];
     }
 }
 
@@ -95,11 +89,9 @@
         return;
     }
     self->state = kRejected;
-    for (FailWithDataBlock_t func in self->rejectTaskQueue) {
-        func(nil);
-    }
-    for (AlwaysBlock_t func in self->alwaysTaskQueue) {
-        func();
+    for (Promise *promise in promises) {
+        [promise execFailBlocks:nil];
+        [promise execAlwaysBlocks];
     }
 }
 
@@ -108,32 +100,18 @@
         return;
     }
     self->state = kRejected;
-    for (FailWithDataBlock_t func in self->rejectTaskQueue) {
-        func(data);
+    for (Promise *promise in promises) {
+        [promise execFailBlocks:data];
+        [promise execAlwaysBlocks];
     }
-    for (AlwaysBlock_t func in self->alwaysTaskQueue) {
-        func();
-    }
-}
-
--(void)always:(AlwaysBlock_t)theBlock{
-    [self->alwaysTaskQueue addObject:theBlock];
-}
-
--(void)doneWithData:(ResolveWithDataBlock_t)theBlock{
-    [self->resolveTaskQueue addObject:theBlock];
-}
-
--(void)failWithData:(FailWithDataBlock_t)theBlock{
-    [rejectTaskQueue addObject:theBlock];
 }
 
 -(void)detachPromise:(Promise *)promise{
-    for (id callback in [promise callbacks]) {
-        [self->resolveTaskQueue removeObject:callback];
-        [self->rejectTaskQueue removeObject:callback];
-        [self->alwaysTaskQueue removeObject:callback];
-    }
+    [promises removeObject:promise];
+}
+
+-(void)detach{
+    [promises removeAllObjects];
 }
 
 

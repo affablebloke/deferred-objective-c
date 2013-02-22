@@ -17,7 +17,7 @@ typedef enum {
     kRejected
 } DeferredState;
 
-typedef void (^FailWithDataBlock_t)(id);
+typedef void (^RejectWithDataBlock_t)(id);
 typedef void (^AlwaysBlock_t)(void);
 typedef void (^ResolveWithDataBlock_t)(id);
 

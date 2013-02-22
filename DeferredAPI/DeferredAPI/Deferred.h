@@ -22,9 +22,7 @@
 -(void)resolveWith:(id)data;
 -(void)reject;
 -(void)rejectWith:(id)data;
--(void)always:(AlwaysBlock_t)always;
--(void)doneWithData:(ResolveWithDataBlock_t)done;
--(void)failWithData:(FailWithDataBlock_t)done;
+-(void)detach;
 -(DeferredState)state;
 -(Promise *)promise;
 -(void)detachPromise:(Promise *)promise;

@@ -49,7 +49,7 @@
     
     __block Deferred *dfd = [DeferredAPI deferred];
     
-    FailWithDataBlock_t failBlock = ^(id data){
+    RejectWithDataBlock_t failBlock = ^(id data){
         [DeferredAPI checkCallbackStatus:dfd withPromises:promises];
     };
     
@@ -77,7 +77,7 @@
     __block NSMutableArray *promisesCopy = [promises mutableCopy];
     __block Deferred *dfd = [DeferredAPI deferred];
     
-    FailWithDataBlock_t failBlock = ^(id data){
+    RejectWithDataBlock_t failBlock = ^(id data){
         [DeferredAPI checkCallbackStatus:dfd withPromises:promisesCopy];
     };
     

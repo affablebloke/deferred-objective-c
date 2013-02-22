@@ -11,17 +11,22 @@
 @class Deferred;
 
 @interface Promise : NSObject{
-    
+    NSMutableArray *alwaysBlocks;
+    NSMutableArray *doneBlocks;
+    NSMutableArray *failBlocks;
 }
 
-@property (strong) NSMutableArray *callbacks;
+
 
 
 -(id)initWithDeferred:(Deferred *)theDeferred;
 -(void)always:(AlwaysBlock_t)always;
 -(void)doneWithData:(ResolveWithDataBlock_t)done;
--(void)failWithData:(FailWithDataBlock_t)done;
+-(void)failWithData:(RejectWithDataBlock_t)done;
 -(DeferredState)state;
 -(void)detach;
+-(void)execDoneBlocks:(id)data;
+-(void)execFailBlocks:(id)data;
+-(void)execAlwaysBlocks;
 
 @end

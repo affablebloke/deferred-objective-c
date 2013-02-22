@@ -59,58 +59,6 @@
 }
 
 
-- (void)testResolveInOrder
-{
-    Deferred *dfd = [DeferredAPI deferred];
-    
-    // create the semaphore and lock it once before we start
-    // the async operation
-    //NSConditionLock *tl = [NSConditionLock new];
-    //asyncLock = tl;
-    
-    __block int state = 0;
-    // start the async operation
-    [dfd doneWithData:^(id data) {
-        state ++;
-    }];
-    
-    [dfd doneWithData:^(id data) {
-        state ++;
-    }];
-    
-    [dfd doneWithData:^(id data) {
-        //STAssertTrue(state == 2, @"Callbacks were not executed in order!!");
-        //[asyncLock unlockWithCondition:1];
-    }];
-    
-    [dfd resolve];
-    //[asyncLock lockWhenCondition:1];
-}
-
-- (void)testRejectInOrder
-{
-    dispatch_suspend(dispatch_get_main_queue());
-    Deferred *dfd = [DeferredAPI deferred];
-    
-    __block int state = 0;
-    // start the async operation
-    [dfd failWithData:^(id data) {
-        state ++;
-    }];
-    
-    [dfd failWithData:^(id data) {
-        state ++;
-       
-    }];
-    
-    [dfd failWithData:^(id data) {
-       
-    }];
-    
-    [dfd reject];
-}
-
-
 - (void)testDeferredAPIDoneCallback{
     __block BOOL hasCalledBack = NO;
     
