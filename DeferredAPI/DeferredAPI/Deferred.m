@@ -15,8 +15,6 @@
 
 @implementation Deferred{
     NSMutableArray *promises;
-    dispatch_queue_t queue;
-    dispatch_queue_t lockqueue;
     DeferredState state;
 }
 
@@ -25,8 +23,6 @@
     self = [super init];
     if (self) {
         self->promises = [NSMutableArray array];
-        self->queue = dispatch_queue_create("com.zombocom.deferred", NULL);
-        self->lockqueue = dispatch_queue_create("com.zombocom.deferredlock", NULL);
         self->state = kPending;
     }
     return self;
@@ -39,27 +35,15 @@
 }
 
 -(DeferredState)state{
-    __block DeferredState result;
-    dispatch_sync(lockqueue, ^{
-        result = self->state;
-    });
-    return result;
+    return self->state;
 }
 
 -(BOOL)isResolved{
-    __block BOOL result;
-    dispatch_sync(self->lockqueue, ^{
-        result = self->state == kResolved;
-    });
-    return result;
+    return self->state == kResolved;
 }
 
 -(BOOL)isRejected{
-    __block BOOL result;
-    dispatch_sync(self->lockqueue, ^{
-        result = self->state == kRejected;
-    });
-    return result;
+    return self->state == kRejected;
 }
 
 -(void)resolve{

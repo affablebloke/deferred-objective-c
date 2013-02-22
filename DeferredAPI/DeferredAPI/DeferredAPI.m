@@ -96,7 +96,6 @@
 }
 
 +(void)checkCallbackStatus:(Deferred *)dfd withPromises:(NSArray *)promises{
-    //dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         if([dfd isResolved] || [dfd isRejected]){
             return;
         }
@@ -116,8 +115,6 @@
         if(resolved){
             [dfd resolve];
         }
-    
-    //});
 }
 
 
