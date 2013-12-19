@@ -3,7 +3,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "DeferredAPI"
-  s.version      = "0.0.1"
+  s.version      = "0.0.3"
   s.summary      = "A DeferredAPI."
 
   s.description  = <<-DESC
@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
 
   s.author       = { "Daniel Johnston" => "affablebloke@gmail.com" }
 
-  s.source       = { :git => "https://github.com/affablebloke/deferred-objective-c.git", :tag => "v0.0.1" }
+  s.source       = { :git => "https://github.com/affablebloke/deferred-objective-c.git", :tag => "v0.0.3" }
 
   s.source_files  = 'DeferredAPI/DeferredAPI', 'DeferredAPI/DeferredAPI/**/*.{h,m}'
   s.exclude_files = 'DeferredAPI/Excluded'
